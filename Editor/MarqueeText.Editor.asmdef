@@ -1,0 +1,21 @@
+{
+    "name": "MarqueeText.Editor",
+    "rootNamespace": "MarqueeText.Editor",
+    "references": [
+        "MarqueeText.Runtime",
+        "Unity.TextMeshPro",
+        "Unity.UGUI",
+        "Unity.TextMeshPro.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

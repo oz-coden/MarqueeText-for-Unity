@@ -1,0 +1,35 @@
+{
+  "name": "com.whitetype.marqueetext",
+  "version": "1.0.0",
+  "displayName": "Marquee Text for TextMeshPro",
+  "description": "An easy-to-use, zero-setup marquee (ticker / LED scrolling display) component for TextMeshPro in Unity.",
+  "unity": "2021.3",
+  "unityRelease": "0f1",
+  "documentationUrl": "https://github.com/white/MarqueeText",
+  "licensesUrl": "https://github.com/white/MarqueeText/blob/main/LICENSE.md",
+  "keywords": [
+    "ui",
+    "text",
+    "textmeshpro",
+    "marquee",
+    "ticker",
+    "scroll",
+    "ugui",
+    "tmpro"
+  ],
+  "author": {
+    "name": "white",
+    "email": "",
+    "url": "https://github.com/white"
+  },
+  "dependencies": {
+    "com.unity.ugui": "2.0.0"
+  },
+  "samples": [
+    {
+      "displayName": "Marquee Text Demo",
+      "description": "Interactive showcase demonstrating various marquee modes, directions, speeds, and dynamic text updating.",
+      "path": "Samples~/Demo"
+    }
+  ]
+}
