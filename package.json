@@ -1,21 +1,16 @@
 {
   "name": "com.github.oz-coden.marqueetext",
   "version": "1.0.0",
-  "displayName": "Marquee Text for TextMeshPro",
-  "description": "A small, allocation-free-at-steady-state horizontal marquee component for TextMeshProUGUI.",
+  "displayName": "Marquee Text",
+  "description": "A lightweight horizontal marquee component for TextMeshProUGUI with continuous, restart, and ping-pong scrolling.",
   "unity": "6000.0",
-  "documentationUrl": "https://github.com/oz-coden/MarqueeText-for-Unity/blob/main/Assets/MarqueeText/README.md",
-  "changelogUrl": "https://github.com/oz-coden/MarqueeText-for-Unity/blob/main/Assets/MarqueeText/CHANGELOG.md",
-  "licensesUrl": "https://github.com/oz-coden/MarqueeText-for-Unity/blob/main/Assets/MarqueeText/LICENSE.md",
+  "unityRelease": "0f1",
   "keywords": [
     "ui",
-    "text",
     "textmeshpro",
     "marquee",
     "ticker",
-    "scroll",
-    "ugui",
-    "tmpro"
+    "scrolling-text"
   ],
   "author": {
     "name": "oz-coden",
@@ -23,12 +18,5 @@
   },
   "dependencies": {
     "com.unity.ugui": "2.0.0"
-  },
-  "samples": [
-    {
-      "displayName": "Marquee Text Demo",
-      "description": "A self-contained scene demonstrating overflowing and non-overflowing TextMeshProUGUI labels.",
-      "path": "Samples~/Demo"
-    }
-  ]
+  }
 }
