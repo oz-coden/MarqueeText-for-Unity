@@ -1,8 +1,8 @@
 {
-    "name": "MarqueeText.Editor",
+    "name": "OzCoden.MarqueeText.Editor",
     "rootNamespace": "MarqueeText.Editor",
     "references": [
-        "MarqueeText.Runtime",
+        "OzCoden.MarqueeText.Runtime",
         "Unity.TextMeshPro",
         "Unity.UGUI",
         "Unity.TextMeshPro.Editor"

@@ -1,12 +1,12 @@
 {
-  "name": "com.whitetype.marqueetext",
+  "name": "com.github.oz-coden.marqueetext",
   "version": "1.0.0",
   "displayName": "Marquee Text for TextMeshPro",
-  "description": "An easy-to-use, zero-setup marquee (ticker / LED scrolling display) component for TextMeshPro in Unity.",
-  "unity": "2021.3",
-  "unityRelease": "0f1",
-  "documentationUrl": "https://github.com/white/MarqueeText",
-  "licensesUrl": "https://github.com/white/MarqueeText/blob/main/LICENSE.md",
+  "description": "A small, allocation-free-at-steady-state horizontal marquee component for TextMeshProUGUI.",
+  "unity": "6000.0",
+  "documentationUrl": "https://github.com/oz-coden/MarqueeText-for-Unity/blob/main/Assets/MarqueeText/README.md",
+  "changelogUrl": "https://github.com/oz-coden/MarqueeText-for-Unity/blob/main/Assets/MarqueeText/CHANGELOG.md",
+  "licensesUrl": "https://github.com/oz-coden/MarqueeText-for-Unity/blob/main/Assets/MarqueeText/LICENSE.md",
   "keywords": [
     "ui",
     "text",
@@ -18,9 +18,8 @@
     "tmpro"
   ],
   "author": {
-    "name": "white",
-    "email": "",
-    "url": "https://github.com/white"
+    "name": "oz-coden",
+    "url": "https://github.com/oz-coden"
   },
   "dependencies": {
     "com.unity.ugui": "2.0.0"
@@ -28,7 +27,7 @@
   "samples": [
     {
       "displayName": "Marquee Text Demo",
-      "description": "Interactive showcase demonstrating various marquee modes, directions, speeds, and dynamic text updating.",
+      "description": "A self-contained scene demonstrating overflowing and non-overflowing TextMeshProUGUI labels.",
       "path": "Samples~/Demo"
     }
   ]

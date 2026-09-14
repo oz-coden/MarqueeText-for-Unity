@@ -1,7 +1,8 @@
 {
-    "name": "OzCoden.MarqueeText.Runtime",
-    "rootNamespace": "MarqueeText",
+    "name": "OzCoden.MarqueeText.Samples",
+    "rootNamespace": "MarqueeText.Samples",
     "references": [
+        "OzCoden.MarqueeText.Runtime",
         "Unity.TextMeshPro",
         "Unity.UGUI"
     ],

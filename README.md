@@ -1,109 +1,114 @@
-# MarqueeText for TextMeshPro
+# MarqueeText for Unity
 
-[![Unity](https://img.shields.io/badge/Unity-2021.3%2B-blue.svg)](https://unity.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.md)
+`MarqueeText` is a small horizontal marquee component for `TextMeshProUGUI`. Attach it to a TMP UI text object, set a speed, and overflowing text scrolls automatically. Text that fits remains a normal TMP object with no internal renderer.
 
-**MarqueeText** is a lightweight, zero-configuration ticker / marquee text component for Unity's TextMeshPro. When text overflows its RectTransform bounding box, it automatically smoothly scrolls like an LED electric bulletin board (電光掲示板).
+## Requirements
 
----
+- Unity 6.0 or newer
+- Unity UI / TextMeshPro (`com.unity.ugui` 2.0.0 or newer)
+- `TextMeshProUGUI`; world-space `TextMeshPro` is not supported
 
-## ✨ Features (特徴)
+Unity 2021/2022 compatibility is intentionally not claimed. Supporting their separate TMP package would add a second dependency and API compatibility path.
 
-- **⚡ Zero Setup (アタッチするだけ)**: Just attach `MarqueeText` to any `TextMeshProUGUI` component. Masks and internal renderers are handled automatically.
-- **🔄 Multiple Scroll Modes (多彩なループ方式)**:
-  - **`Continuous`**: Seamless endless ticker with no gaps — next repetition follows seamlessly.
-  - **`Restart`**: Scrolls completely to the end, then restarts from the beginning.
-  - **`PingPong`**: Bounces back and forth between start and end.
-- **🧭 4-Way Direction (4方向対応)**: Horizontal (Right-to-Left / Left-to-Right) and Vertical (Bottom-to-Top / Top-to-Bottom).
-- **📐 Smart Overflow Detection (自動オーバーフロー検知)**: Only scrolls when text exceeds the bounding box. If the text fits, it aligns naturally (Left, Center, Right, etc.).
-- **🎨 Dynamic & Rich Text Compatible (動的更新・リッチテキスト対応)**: Supports colors, font size, sprite tags, and runtime text changes seamlessly.
-- **⏱ Timing Controls (柔軟なタイミング設定)**: Configurable start delay, loop pause, speed (px/sec), and unscaled time support.
-- **🎛 Live Editor Preview (エディタプレビュー)**: Preview and test marquee scroll directly inside the Scene/Game view without entering Play mode.
+## Installation
 
----
+### Unity Package Manager
 
-## 📦 Installation (インストール方法)
+In **Window > Package Manager**, choose **Add package from git URL** and enter:
 
-### Option 1: Unity Package Manager (via Git URL)
-1. Open the **Package Manager** in Unity (`Window` > `Package Manager`).
-2. Click the `+` button in the top-left corner and select **"Add package from git URL..."**.
-3. Enter the repository URL:
-   ```
-   https://github.com/white/MarqueeText.git?path=Assets/MarqueeText
-   ```
+```text
+https://github.com/oz-coden/MarqueeText-for-Unity.git?path=Assets/MarqueeText
+```
 
-### Option 2: Manual / Local Package
-Copy or clone the `Assets/MarqueeText` folder into your Unity project's `Assets` or `Packages` directory.
+To pin a release, append a tag after the path, for example:
 
----
+```text
+https://github.com/oz-coden/MarqueeText-for-Unity.git?path=Assets/MarqueeText#v1.0.0
+```
 
-## 🚀 Quick Start (使い方)
+### Manual installation
 
-1. Create a **TextMeshPro - Text (UI)** in your Canvas.
-2. Set the `RectTransform` size (Width / Height) to your desired viewing window.
-3. Attach the **`MarqueeText`** component to the TextMeshPro GameObject (`Add Component` > `UI` > `Marquee Text (TMPro)`).
-4. That's it! If the text overflows the box, it will automatically scroll!
+Choose one location:
 
----
+- Copy `Assets/MarqueeText` into your project's `Assets` directory, or
+- Copy it to `Packages/com.github.oz-coden.marqueetext` as an embedded package.
 
-## ⚙️ Inspector Options (インスペクター設定)
+Do not copy the entire development repository into `Packages`; the package root is `Assets/MarqueeText`.
 
-| Setting | Description |
-|---|---|
-| **Direction** | `RightToLeft` (Standard ticker), `LeftToRight`, `BottomToTop` (Credits), `TopToBottom`. |
-| **Scroll Mode** | `Continuous` (Seamless loop), `Restart` (Reset to start), `PingPong` (Bounce back and forth). |
-| **Speed** | Scroll velocity in pixels per second. |
-| **Gap** | Spacing in pixels between the end and the start in `Continuous` mode. |
-| **Start Delay** | Delay (seconds) before scrolling begins. |
-| **Loop Delay** | Pause duration (seconds) at the ends for `Restart` and `PingPong` modes. |
-| **Use Unscaled Time** | When enabled, scrolls even when `Time.timeScale == 0` (e.g. pause menus). |
-| **Trigger Mode** | `OnlyIfOverflowing` (Default), `Always`, `OnHover` (Mouse hover), or `Manual`. |
-| **Preview In Editor** | Enables live animation in Edit Mode. |
+## Quick start
 
----
+1. Create **UI > Text - TextMeshPro** under a Canvas.
+2. Resize its RectTransform to the desired visible width.
+3. Add **UI > Marquee Text (TextMeshPro)**.
+4. Enter Play Mode. The text moves only when its unwrapped width exceeds the RectTransform width.
 
-## 💻 Scripting API (スクリプトからの操作)
+`RectMask2D` and internal renderers are managed automatically.
+
+## Inspector
+
+| Setting | Purpose |
+| --- | --- |
+| Mode | `Continuous`, `Restart`, or `PingPong` |
+| Direction | `RightToLeft` or `LeftToRight` |
+| Speed | Pixels per second |
+| Start Delay | Delay applied after enable or manual restart |
+| Gap | Space between copies in Continuous mode |
+| End Pause | Edge pause in Restart and PingPong modes |
+| Use Unscaled Time | Advanced option for pause menus |
+
+Edit Mode Preview is a temporary Inspector action. It runs only while that Inspector is open, updates at 30 FPS, and is not saved into the Scene or Prefab.
+
+## Runtime API
 
 ```csharp
+using TMPro;
 using UnityEngine;
-using MarqueeText;
+using Marquee = MarqueeText.MarqueeText;
 
-public class ExampleController : MonoBehaviour
+public sealed class NowPlayingLabel : MonoBehaviour
 {
-    [SerializeField] private MarqueeText _marquee;
+    [SerializeField] private TextMeshProUGUI label;
+    [SerializeField] private Marquee marquee;
 
-    void Start()
+    public void SetTitle(string title)
     {
-        // Update text dynamically (automatically recalculates bounds)
-        _marquee.SetText("Now Playing: Amazing Track Title - Artist Name");
-
-        // Control playback
-        _marquee.Play();
-        _marquee.Pause();
-        _marquee.Restart();
-        _marquee.Stop();
-
-        // Adjust settings at runtime
-        _marquee.Speed = 100f;
-        _marquee.Gap = 80f;
-        _marquee.ScrollMode = MarqueeScrollMode.Continuous;
-        _marquee.Direction = MarqueeDirection.RightToLeft;
-        
-        // Status checks
-        Debug.Log($"Is Overflowing: {_marquee.IsOverflowing}");
-        Debug.Log($"Is Scrolling: {_marquee.IsScrolling}");
+        // Normal TMP changes are detected automatically.
+        label.text = title;
+        marquee.Restart();
     }
+
+    public void Pause() => marquee.Pause();
+    public void Resume() => marquee.Play();
 }
 ```
 
-### Events (UnityEvent)
-- `onScrollStarted` : Invoked when scrolling begins after initial start delay.
-- `onScrollLoopCompleted` : Invoked every time a full loop/cycle finishes.
-- `onScrollPaused` : Invoked when paused or stopped.
-- `onScrollResumed` : Invoked when playback resumes.
+Public surface:
 
----
+- `Play()` resumes at the current position.
+- `Pause()` freezes the current position.
+- `Restart()` returns to the start, reapplies Start Delay, and plays.
+- `Speed` can be changed at runtime.
+- `IsPlaying` and `IsOverflowing` are read-only state.
 
-## 📄 License
+Set text through `TextMeshProUGUI.text`; `MarqueeText` deliberately has no duplicate `SetText` API.
 
-This project is licensed under the [MIT License](LICENSE.md).
+## Rendering and performance
+
+- Non-overflowing text uses the original TMP renderer and performs no position work.
+- Overflowing Restart/PingPong text creates one hidden internal TMP renderer.
+- Continuous mode creates a second renderer for the following copy.
+- Text measurement runs only after text, layout, material, RectTransform, or Inspector configuration changes.
+- Delay and Pause frames do not write RectTransform positions.
+- The state engine and steady-state component tick are covered by zero-allocation tests.
+
+Frequent per-frame changes to TMP layout or material properties necessarily trigger remeasurement and renderer synchronization. For animated color effects, prefer a shared material animation when possible.
+
+## Samples and tests
+
+Import **Marquee Text Demo** from Package Manager's Samples tab, then open `MarqueeTextDemo.unity` and enter Play Mode.
+
+The package includes EditMode tests for the state engine and PlayMode tests for TMP integration, runtime text updates, Pause/Restart, enable/disable, steady-state GC allocation, and 1/10/100 instance benchmarks.
+
+## License
+
+MIT. See [LICENSE.md](LICENSE.md).

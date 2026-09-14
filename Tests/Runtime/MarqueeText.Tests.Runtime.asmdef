@@ -1,20 +1,17 @@
 {
-    "name": "OzCoden.MarqueeText.Tests.Editor",
+    "name": "OzCoden.MarqueeText.Tests.Runtime",
     "rootNamespace": "MarqueeText.Tests",
     "references": [
         "OzCoden.MarqueeText.Runtime",
-        "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner"
+        "Unity.TextMeshPro",
+        "Unity.UGUI",
+        "UnityEngine.TestRunner"
     ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
-    "overrideReferences": true,
-    "precompiledReferences": [
-        "nunit.framework.dll"
-    ],
+    "overrideReferences": false,
+    "precompiledReferences": [],
     "autoReferenced": false,
     "defineConstraints": [
         "UNITY_INCLUDE_TESTS"
